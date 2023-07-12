@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: hunter2
+
+  liquibase:
+    image: liquibase/liquibase
+    volumes:
+      - ./data:/liquibase/data
+    command: update --url jdbc:postgresql://postgres/postgres --username postgres --password hunter2 --changelog-file data/changelog.yaml
